@@ -237,16 +237,21 @@ The UI customization is achieved through the `.streamlit/config.toml` file, whic
 ## 📝 Explanation Methods
 
 1. **💧 SHAP Waterfall Plot**:
-   - Shows how each feature contributes positively or negatively to the prediction.
-   - <img src="https://raw.githubusercontent.com/slundberg/shap/master/docs/artwork/waterfall_simple.png" width="300" />
+   - Shows how each feature contributes positively or negatively to the prediction
+   - Visualizes the path from the base value to the final prediction
+   - Color-coded to show positive (red) and negative (blue) contributions
 
 2. **⚡ SHAP Force Plot**:
-   - Interactive visualization of feature contributions to individual predictions.
-   - <img src="https://raw.githubusercontent.com/slundberg/shap/master/docs/artwork/simple_force_plot.png" width="450" />
+   - Interactive visualization of feature contributions to individual predictions
+   - Displays how each feature pushes the prediction higher or lower
+   - Helps understand which factors most influence a specific prediction
 
 3. **🔄 Permutation Importance**:
-   - Ranks features by their impact on the model's predictions.
-   - <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_permutation_importance_001.png" width="350" />
+   - Ranks features by their impact on the model's predictions
+   - Shows which features, when randomized, most decrease model performance
+
+![SHAP Summary Plot Example](image/summary_plot.png)
+*Example of a SHAP summary plot showing feature importance and impact direction*
 
 ---
 
