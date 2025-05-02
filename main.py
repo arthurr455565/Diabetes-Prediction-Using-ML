@@ -1,6 +1,11 @@
 import streamlit as st
 import sys
 import traceback
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 # Set up error handling to ensure app doesn't crash unexpectedly
 try:
@@ -8,7 +13,7 @@ try:
     try:
         from function.function import *
     except Exception as e:
-        st.error(f"Error importing function utilities: {e}")
+        logger.error(f"Error importing function utilities: {e}")
     
     from loader import page_icon
     
@@ -20,26 +25,13 @@ try:
         initial_sidebar_state="expanded"
     )
     
-    # Optional debugging information
-    st.sidebar.markdown("### Debug Info")
-    with st.sidebar.expander("System Information", expanded=False):
-        st.write(f"Python version: {sys.version}")
-        st.write(f"Working directory structure:")
-        import os
-        try:
-            files = "\n".join([f"- {f}" for f in os.listdir(".")])
-            st.code(files)
-        except Exception as e:
-            st.error(f"Error listing directory: {e}")
-    
     # Import and run modules with error handling
     try:
         # Header
         from app.header import app
         app()
     except Exception as e:
-        st.error(f"Error in header module: {e}")
-        st.code(traceback.format_exc())
+        logger.error(f"Error in header module: {str(e)}")
     
     # Initialize input_data with a default
     input_data = None
@@ -49,8 +41,7 @@ try:
         from app.input import app
         input_data = app()
     except Exception as e:
-        st.error(f"Error in input module: {e}")
-        st.code(traceback.format_exc())
+        logger.error(f"Error in input module: {str(e)}")
         # Provide default input_data to prevent downstream errors
         import pandas as pd
         input_data = pd.DataFrame({
@@ -64,41 +55,35 @@ try:
             from app.predict import app
             app(input_data)
         except Exception as e:
-            st.error(f"Error in prediction module: {e}")
-            st.code(traceback.format_exc())
+            logger.error(f"Error in prediction module: {str(e)}")
         
         try:
             # Explain
             from app.explainer import app
             app(input_data)
         except Exception as e:
-            st.error(f"Error in explainer module: {e}")
-            st.code(traceback.format_exc())
+            logger.error(f"Error in explainer module: {str(e)}")
     
     try:
         # Model performance
         from app.performance import app
         app()
     except Exception as e:
-        st.error(f"Error in performance module: {e}")
-        st.code(traceback.format_exc())
+        logger.error(f"Error in performance module: {str(e)}")
     
     try:
         # Feature importance
         from app.perm_importance import app
         app()
     except Exception as e:
-        st.error(f"Error in importance module: {e}")
-        st.code(traceback.format_exc())
+        logger.error(f"Error in importance module: {str(e)}")
     
     try:
         # About
         from app.about import app
         app()
     except Exception as e:
-        st.error(f"Error in about module: {e}")
-        st.code(traceback.format_exc())
+        logger.error(f"Error in about module: {str(e)}")
 
 except Exception as e:
-    st.error(f"Critical error in application: {e}")
-    st.code(traceback.format_exc())
+    logger.error(f"Critical error in application: {str(e)}")

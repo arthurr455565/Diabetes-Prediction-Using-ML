@@ -4,6 +4,11 @@ from PIL import Image
 import os
 import streamlit as st
 import sys
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Wrap all imports in try-except to identify import errors
 try:
@@ -14,7 +19,7 @@ try:
                                 f1_score,
                                 roc_auc_score)
 except Exception as e:
-    st.error(f"Import error: {e}")
+    logger.error(f"Import error: {e}")
     thresholds = 0.5  # Default fallback
 
 # Set base directory for file paths
@@ -43,9 +48,9 @@ try:
         X = data[['Pregnancies', 'Glucose', 'Insulin', 'BMI', 'Age']]
         y = data['Outcome']
     else:
-        st.warning(f"Data file not found at: {data_path}")
+        logger.warning(f"Data file not found at: {data_path}")
 except Exception as e:
-    st.error(f"Error loading data: {e}")
+    logger.error(f"Error loading data: {e}")
 
 # Try to load the page icon, use a fallback if there's an error
 try:
@@ -57,7 +62,7 @@ try:
         page_icon = "🩺"
 except Exception as e:
     # If any error occurs, use an emoji as fallback
-    st.warning(f"Icon loading warning (using emoji instead): {e}")
+    logger.warning(f"Icon loading warning (using emoji instead): {e}")
     page_icon = "🩺"
 
 # Try to load the model with robust error handling
@@ -74,7 +79,7 @@ try:
 
                 # Accuracy Score
                 accuracy_result = round(accuracy_score(y, y_pred) * 100, 2)
-                # F1 Score (fixed typo in comment)
+                # F1 Score
                 f1_result = round(f1_score(y, y_pred) * 100, 2)
                 # Recall Score
                 recall_result = round(recall_score(y, y_pred) * 100, 2)
@@ -83,8 +88,8 @@ try:
                 # ROC AUC Score
                 roc_auc = round(roc_auc_score(y, y_score) * 100, 2)
             except Exception as e:
-                st.error(f"Error calculating metrics: {e}")
+                logger.error(f"Error calculating metrics: {e}")
     else:
-        st.warning(f"Model file not found at: {model_path}")
+        logger.warning(f"Model file not found at: {model_path}")
 except Exception as e:
-    st.error(f"Error loading model: {e}")
+    logger.error(f"Error loading model: {e}")
