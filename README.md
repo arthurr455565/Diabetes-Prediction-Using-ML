@@ -1,8 +1,12 @@
-# Diabetes Prediction Model
+# 🩺 Diabetes Prediction Model
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://diabetes-prediction-using-ml.streamlit.app)
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This project demonstrates a machine learning solution for predicting diabetes based on user-provided health data. The application uses **Streamlit** for an interactive web interface and advanced interpretability tools like SHAP and permutation importance to explain model predictions.
 
-## Live Demo
+## 🚀 Live Demo
 
 Check out the live application: [Diabetes Prediction App](https://diabetes-prediction-using-ml.streamlit.app)
 
@@ -10,25 +14,25 @@ Check out the live application: [Diabetes Prediction App](https://diabetes-predi
 
 ---
 
-## Table of Contents
-1. [Overview](#overview)
-2. [Dataset](#dataset)
-3. [Model](#model)
-4. [Features](#features)
-5. [Installation](#installation)
-6. [How It Works](#how-it-works)
-7. [Project Structure](#project-structure)
-8. [UI Customization](#ui-customization)
-9. [Explanation Methods](#explanation-methods)
-10. [Model Performance](#model-performance)
-11. [Project Motivation](#project-motivation)
-12. [Contributing](#contributing)
-13. [License](#license)
-14. [Contacts](#contacts)
+## 📋 Table of Contents
+1. [🔍 Overview](#-overview)
+2. [📊 Dataset](#-dataset)
+3. [🤖 Model](#-model)
+4. [✨ Features](#-features)
+5. [⚙️ Installation](#️-installation)
+6. [🛠️ How It Works](#️-how-it-works)
+7. [📁 Project Structure](#-project-structure)
+8. [🎨 UI Customization](#-ui-customization)
+9. [📝 Explanation Methods](#-explanation-methods)
+10. [📈 Model Performance](#-model-performance)
+11. [💡 Project Motivation](#-project-motivation)
+12. [🤝 Contributing](#-contributing)
+13. [📄 License](#-license)
+14. [📬 Contacts](#-contacts)
 
 ---
 
-## Overview
+## 🔍 Overview
 
 The **Diabetes Prediction with AI** project leverages a machine learning model to predict diabetes risk. Built with **Streamlit**, the app explains predictions using SHAP and permutation importance while showcasing model performance metrics. This model has not been reviewed by medical professionals; it is developed solely for experimental and testing purposes.
 
@@ -37,14 +41,14 @@ The model was developed based on the ROC AUC metric, while efforts were made to 
 ### Why This Project?
 
 Understanding diabetes risk through data-driven predictions can help identify potential cases early. This project also demonstrates:
-- Practical application of machine learning in healthcare
-- Model interpretability through SHAP and permutation importance
-- Real-world deployment of machine learning models with Streamlit Cloud
-- Custom UI elements for enhanced user experience
+- 🏥 Practical application of machine learning in healthcare
+- 🔎 Model interpretability through SHAP and permutation importance
+- ☁️ Real-world deployment of machine learning models with Streamlit Cloud
+- 🎮 Custom UI elements for enhanced user experience
 
 ---
 
-## Dataset
+## 📊 Dataset
 
 The dataset is sourced from the **National Institute of Diabetes and Digestive and Kidney Diseases**. It includes:
 
@@ -83,54 +87,59 @@ The dataset is sourced from the **National Institute of Diabetes and Digestive a
 - **Outcome:** Proportion of `1` (positive diabetes) = 34.9%
 
 
-#### We use only `Pregnancies`, `Glucose`, `BMI`, `Insulin`, `Age` for prediction.
+> ⚠️ **Note:** We use only `Pregnancies`, `Glucose`, `BMI`, `Insulin`, `Age` for prediction.
+
 ---
 
-## Model
+## 🤖 Model
+
 You can learn more about the model in detail from [here](notebooks/Model.ipynb). The `RandomForestClassifier` model was chosen through experimentation and showed the best performance. The required hyperparameters were identified using the `optuna` optimizer. For the model to function, it needs `FeatureEngineering`, `WoEEncoding`, and `ColumnSelector` transformers, which are combined through a pipeline.
 
 `Cross-validation` and `ROC AUC` were used for model selection because the number of observations was small, and splitting into test/train sets would have been inaccurate.
 
 ### About transformers
-#### **1. FeatureEngineering**
+
+#### **1. FeatureEngineering** 📊
 Transforms raw data into a format suitable for machine learning. This includes scaling, encoding, creating new features, or handling missing data.
 
-#### **2. WoEEncoding (Weight of Evidence Encoding)**
+#### **2. WoEEncoding (Weight of Evidence Encoding)** ⚖️
 Features must help to better explain the `Outcome` after WoE.
 The Weight of Evidence (WoE) for a category in a feature is calculated as:
 
+```
 WoE = ln(P(Feature = X | Target = 1) / P(Feature = X | Target = 0))
+```
 
 Where:
 - `P(Feature = X | Target = 1)`: Proportion of positive cases (`Target = 1`) for the category `X`.
 - `P(Feature = X | Target = 0)`: Proportion of negative cases (`Target = 0`) for the category `X`.
 
-#### **3. ColumnSelector**
+#### **3. ColumnSelector** 🔍
 Selects specific columns *Pregnancies*, *Glucose*, *BMI*, *PregnancyRatio*,
 *RiskScore*, *InsulinEfficiency*, *Glucose_BMI*, *BMI_Age*,
 *Glucose_woe*, *RiskScore_woe* after `FeatureEngineering`, which helps remove noise columns.
 
 ---
-## Features
+## ✨ Features
 
-1. **Interactive Input**: Enter health parameters (Pregnancies, Glucose, Insulin, BMI, Age).
-2. **Diabetes Prediction**: Real-time risk prediction with probability.
-3. **SHAP Explanations**: Visualize individual prediction explanations using:
+1. **💻 Interactive Input**: Enter health parameters (Pregnancies, Glucose, Insulin, BMI, Age).
+2. **🔮 Diabetes Prediction**: Real-time risk prediction with probability.
+3. **📊 SHAP Explanations**: Visualize individual prediction explanations using:
    - Waterfall Plot
    - Force Plot
-4. **Permutation Importance**: Analyze which features most influence the predictions.
-5. **Performance Metrics**:
+4. **📏 Permutation Importance**: Analyze which features most influence the predictions.
+5. **📉 Performance Metrics**:
    - Accuracy
    - Precision
    - Recall
    - F1 Score
    - ROC AUC
-6. **Informational Section**: Learn about diabetes risk factors in the "About" section.
-7. **Custom UI**: Enhanced user interface with customized loading spinners and color theme.
+6. **ℹ️ Informational Section**: Learn about diabetes risk factors in the "About" section.
+7. **🎨 Custom UI**: Enhanced user interface with customized theme and design elements.
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 ### Prerequisites
 - Python 3.10 or above
@@ -155,22 +164,22 @@ Selects specific columns *Pregnancies*, *Glucose*, *BMI*, *PregnancyRatio*,
 
 ---
 
-## How It Works
+## 🛠️ How It Works
 
 ### Application Workflow
-1. **User Input**:
+1. **📝 User Input**:
    - Enter health data in the sidebar.
    - Features: Pregnancies, Glucose, Insulin, BMI, Age.
-2. **Prediction**:
+2. **🔄 Prediction**:
    - The trained model predicts diabetes risk and displays the result.
-3. **Explanation**:
+3. **🔍 Explanation**:
    - View SHAP plots (Waterfall and Force) for detailed feature contributions.
    - Explore permutation importance for global feature analysis.
-4. **Model Performance**:
+4. **📊 Model Performance**:
    - Metrics such as Accuracy, F1 Score, and ROC AUC are displayed.
 
 
-## Project Structure
+## 📁 Project Structure
 ```
 Diabetes-Prediction/
 ├── README.md                 # Project documentation
@@ -204,87 +213,95 @@ Diabetes-Prediction/
 
 ---
 
-## UI Customization
+## 🎨 UI Customization
 
 This project features a custom-designed Streamlit interface with:
 
-1. **Custom Theme Colors**:
-   - Primary color: #5B9BD5 (blue)
-   - Background: #F0F2F6 (light gray)
-   - Secondary background: #E0E0E0 (darker gray)
-   - Text color: #31333F (dark gray)
+1. **🎭 Custom Theme Colors**:
+   - Primary color: <span style="color:#5B9BD5">■</span> #5B9BD5 (blue)
+   - Background: <span style="color:#F0F2F6">■</span> #F0F2F6 (light gray)
+   - Secondary background: <span style="color:#E0E0E0">■</span> #E0E0E0 (darker gray)
+   - Text color: <span style="color:#31333F">■</span> #31333F (dark gray)
 
-2. **Minimalist UI**:
+2. **🧹 Minimalist UI**:
    - Clean interface with less visual clutter
    - Focus on content and user interactions
 
-3. **Browser Configuration**:
+3. **🌐 Browser Configuration**:
    - Privacy-focused with optional usage stats collection disabled
 
 The UI customization is achieved through the `.streamlit/config.toml` file, which can be modified to further personalize the application's appearance.
 
 ---
 
-## Explanation Methods
+## 📝 Explanation Methods
 
-1. **SHAP Waterfall Plot**:
+1. **💧 SHAP Waterfall Plot**:
    - Shows how each feature contributes positively or negatively to the prediction.
-2. **SHAP Force Plot**:
+   - <img src="https://raw.githubusercontent.com/slundberg/shap/master/docs/artwork/waterfall_simple.png" width="300" />
+
+2. **⚡ SHAP Force Plot**:
    - Interactive visualization of feature contributions to individual predictions.
-3. **Permutation Importance**:
+   - <img src="https://raw.githubusercontent.com/slundberg/shap/master/docs/artwork/simple_force_plot.png" width="450" />
+
+3. **🔄 Permutation Importance**:
    - Ranks features by their impact on the model's predictions.
+   - <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_permutation_importance_001.png" width="350" />
 
 ---
 
-## Model Performance
+## 📈 Model Performance
 
 Performance metrics calculated:
-- **Accuracy**: Percentage of correct predictions. (0.7857)
-- **Precision**: Ratio of true positives to total positive predictions. (0.6296)
-- **Recall**: Ratio of true positives to total actual positives. (0.9444)
-- **F1 Score**: Harmonic mean of Precision and Recall. (0.7556)
-- **ROC AUC**: Area under the ROC curve. (0.8367)
 
-Metrics are displayed as donut charts in the application.
+| Metric | Value | Description |
+|--------|-------|-------------|
+| **Accuracy** | 78.57% | Percentage of correct predictions |
+| **Precision** | 62.96% | Ratio of true positives to total positive predictions |
+| **Recall** | 94.44% | Ratio of true positives to total actual positives |
+| **F1 Score** | 75.56% | Harmonic mean of Precision and Recall |
+| **ROC AUC** | 83.67% | Area under the ROC curve |
+
+Metrics are displayed as donut charts in the application for easier interpretation.
 
 ---
 
-## Project Motivation
+## 💡 Project Motivation
 
 This project was developed to:
-- Build knowledge in machine learning, especially in healthcare
-- Gain hands-on experience with model interpretability techniques like SHAP
-- Deploy an AI solution using Streamlit Cloud
-- Create an intuitive and user-friendly interface for medical predictions
+- 🧠 Build knowledge in machine learning, especially in healthcare
+- 🔍 Gain hands-on experience with model interpretability techniques like SHAP
+- ☁️ Deploy an AI solution using Streamlit Cloud
+- 🖌️ Create an intuitive and user-friendly interface for medical predictions
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Follow these steps:
-1. Fork the repository.
-2. Create a new feature branch:
+1. 🍴 Fork the repository.
+2. 🌿 Create a new feature branch:
    ```bash
    git checkout -b feature-name
    ```
-3. Commit your changes and push:
+3. 💾 Commit your changes and push:
    ```bash
    git commit -m "Feature description"
    git push origin feature-name
    ```
-4. Submit a pull request.
+4. 📤 Submit a pull request.
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
-## Contacts
+## 📬 Contacts
 
 If you have any questions or suggestions, please contact:
-- Email: bishalroy909@gmail.com
-- GitHub Profile: [Bishal Roy](https://github.com/arthurr455565)
-- LinkedIn: [Bishal Roy](https://www.linkedin.com/in/bishal-roy-028386193)
+- ✉️ Email: bishalroy909@gmail.com
+- 🐙 GitHub Profile: [Bishal Roy](https://github.com/arthurr455565)
+- 💼 LinkedIn: [Bishal Roy](https://www.linkedin.com/in/bishal-roy-028386193)
 
