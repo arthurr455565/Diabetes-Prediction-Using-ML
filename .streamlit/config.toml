@@ -11,7 +11,7 @@ enableXsrfProtection = false
 
 [client]
 # Possible values: "dots", "circle", "square", "hamburger", "arrow", "balloon", "ripple"
-spinnerType = "balloon"
+spinnerType = "hamburger"
 showErrorDetails = false
 toolbarMode = "minimal"
 caching = true
