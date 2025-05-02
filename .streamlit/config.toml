@@ -7,4 +7,12 @@ font = "sans serif"
 
 [server]
 enableCORS = false
-enableXsrfProtection = false 
+enableXsrfProtection = false
+
+[client]
+# Possible values: "dots", "circle", "square", "hamburger", "arrow", "balloon", "ripple"
+spinnerType = "balloon"
+showErrorDetails = false
+toolbarMode = "minimal"
+caching = true
+displayEnabled = true 
