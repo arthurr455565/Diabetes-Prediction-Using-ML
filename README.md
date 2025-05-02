@@ -214,13 +214,12 @@ This project features a custom-designed Streamlit interface with:
    - Secondary background: #E0E0E0 (darker gray)
    - Text color: #31333F (dark gray)
 
-2. **Custom Loading Spinner**:
-   - The app uses a "hamburger" style loading spinner for a unique user experience
-   - Appears during prediction operations and data loading
-
-3. **Minimal UI Mode**:
-   - Streamlined interface with less visual clutter
+2. **Minimalist UI**:
+   - Clean interface with less visual clutter
    - Focus on content and user interactions
+
+3. **Browser Configuration**:
+   - Privacy-focused with optional usage stats collection disabled
 
 The UI customization is achieved through the `.streamlit/config.toml` file, which can be modified to further personalize the application's appearance.
 

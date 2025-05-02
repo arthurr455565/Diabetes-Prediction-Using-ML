@@ -9,10 +9,8 @@ font = "sans serif"
 enableCORS = false
 enableXsrfProtection = false
 
-[client]
-# Possible values: "dots", "circle", "square", "hamburger", "arrow", "balloon", "ripple"
-spinnerType = "hamburger"
-showErrorDetails = false
-toolbarMode = "minimal"
-caching = true
-displayEnabled = true 
+[browser]
+gatherUsageStats = false
+
+[ui]
+hideTopBar = false 
